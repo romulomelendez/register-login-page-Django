@@ -2,12 +2,10 @@
 {% load static %}
 
 {% block 'header' %}
-  <link rel="stylesheet" href="{% static 'users/css/register.css' %}">
+  <link href="{% static 'users/css/register.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block 'content' %}
-
-
 <div class="bg1">
   <div class="container">
     <div class="row">
@@ -42,26 +40,35 @@
             <div class="circle c3"></div>
           </div>
           <br />
-          <h3>Create account</h3>
-          <form action="" method="POST">
+          <h3>Create Account</h3>
+          {% if messages %}
+            {% for message in messages %}
+            <p class="alert {{ message.tags }}">
+              {{ message }}
+            </p>
+            {% endfor %}
+          {% endif %}
+          <form action={% url 'register' %} method="POST">
+            {% csrf_token %}
             <label>Username</label>
-            <input type="text" class="input-form" name="username" id="" />
+            <input type="text" class="input-form" name="username" />
             <br />
             <br />
             <label>Password</label>
-            <input type="password" class="input-form" name="senha" id="" />
+            <input type="password" class="input-form" name="password" />
             <br />
             <br />
             <label>Confirm Password</label>
             <input
               type="password"
               class="input-form"
-              name="confirmar_senha"
-              id=""
+              name="confirm_password"
             />
             <br />
             <br />
-            <input type="submit" value="REGISTER" class="btn-cadastro" />
+            <button type="submit" class="btn-register" style="padding: 10px; background-color: #58fcd5; border: none; border: 1px solid #58fcd5; font-size: 18px; font-weight: bold; padding-left: 25px; padding-right: 25px;">
+              REGISTER
+            </button>
             <br />
             <br />
             <br />
@@ -71,5 +78,12 @@
       </div>
     </div>
   </div>
+  <footer class="footer">
+    Made by
+    <pre> </pre>
+    <a class="link" href="https://github.com/romulomelendez">
+      MOJO
+    </a>
+  </footer>
 </div>
 {% endblock %}
