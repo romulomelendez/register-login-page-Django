@@ -19,7 +19,7 @@ def login(request):
 
     auth.login(request, user)
     messages.add_message(request, constants.SUCCESS, "Logged!")
-    return redirect('/flashcard/new_flashcard')
+    return redirect('/flashcard/new_flashcard') # page dont exist yet
 
 
 def register(request):
